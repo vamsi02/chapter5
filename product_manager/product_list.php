@@ -1,6 +1,7 @@
 <?php include '../view/header.php'; ?>
 <main>
     <h1>Product List</h1>
+    <link rel='stylesheet' type='text/css' href='../main.css' >
 
     <aside>
         <!-- display a list of categories -->
