@@ -48,12 +48,30 @@ if ($action == 'list_products') {
             $name == NULL || $price == NULL || $price == FALSE) {
         $error = "Invalid product data. Check all fields and try again.";
         include('../errors/error.php');
-    } else { 
+	} else { 
         add_product($category_id, $code, $name, $price);
         header("Location: .?category_id=$category_id");
-    }
+	}
 } else if ($action == 'list_categories') {
       $categories= get_categories();
       include('category_list.php');
+}else if ($action == 'add_category'){
+	  $category_name = filter_input(INPUT_POST, 'category_name');
+  	if ($category_name == NULL){
+  	$error = "Invalid category name. Check the data and try again.";
+  	include('../errors/error.php');
+	} else {
+  	  add_category($category_name);
+  	  header("location: .?action=list_categories");
+	}
+}else if ($action == 'delete_category'){
+	  $category_id=filter_input(INPUT_POST, 'category');
+  	if ($category_id == NULL ) {
+  	$error_1 = "Invalid funcion";
+	  include('../errors/error.php');
+	}else {
+	  delete_category($category_id);
+	  header("location: .?action=list_categories");
+	}
 }
 ?>
